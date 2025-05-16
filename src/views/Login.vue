@@ -2,8 +2,8 @@
   <div class="login-container">
     <div class="login-box">
       <div class="login-header">
-        <img src="../assets/github-mark.svg" alt="Logo" class="logo">
-        <h1>登录 GitHub</h1>
+        <img src="../assets/angry_face_with_horns_color.svg" alt="Logo" class="logo">
+        <h1>登录 不语大师</h1>
       </div>
       <div class="login-form">
         <div class="form-group">
@@ -44,12 +44,34 @@ const router = useRouter()
 const username = ref('')
 const password = ref('')
 
-const handleLogin = () => {
-  // 这里添加登录逻辑
-  console.log('登录信息:', {
-    username: username.value,
-    password: password.value
-  })
+const handleLogin = async () => {
+  try {
+    const response = await fetch('http://10.11.36.141:8080/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: username.value,
+        password: password.value
+      })
+    })
+    
+    const data = await response.json()
+    if (data.code === 200) {
+      // 存储token
+      console.log("登录返回",data)
+      localStorage.setItem('access_token', data.data.accessToken)
+      localStorage.setItem('refresh_token', data.data.refreshToken)
+      // 跳转到首页
+      router.push('/home')
+    } else {
+      alert(data.message)
+    }
+  } catch (error) {
+    console.error('登录失败:', error)
+    alert('登录失败，请稍后重试')
+  }
 }
 </script>
 
