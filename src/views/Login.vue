@@ -46,7 +46,7 @@ const password = ref('')
 
 const handleLogin = async () => {
   try {
-    const response = await fetch('http://10.11.36.141:8080/api/auth/login', {
+    const response = await fetch('/api/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

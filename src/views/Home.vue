@@ -23,7 +23,7 @@
 
 <script setup>
 import { reactive, onMounted } from 'vue'
-import { API_BASE_URL } from '../config/api'
+
 
 const stats = reactive({
   todoCount: 0,
@@ -34,7 +34,7 @@ const stats = reactive({
 
 const fetchStats = async () => {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/stats/dashboard`, {
+    const response = await fetch('/api/stats/dashboard', {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
       }
