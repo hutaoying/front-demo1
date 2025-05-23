@@ -1,5 +1,5 @@
 # 第一阶段：构建应用
-FROM node:23 AS build-stage
+FROM node:22 AS build-stage
 
 # 设置工作目录
 WORKDIR /app

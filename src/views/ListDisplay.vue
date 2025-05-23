@@ -146,7 +146,7 @@ const getRiskTagType = (type) => {
 const fetchData = async () => {
   loading.value = true
   try {
-    const response = await fetch('http://10.11.36.141:8080/api/risk/assets?' + new URLSearchParams({
+    const response = await fetch('/api/risk/assets?' + new URLSearchParams({
       ...searchForm,
       riskType: searchForm.riskType.join(',')
     }), {
@@ -207,7 +207,7 @@ const maxCount = ref(0)
 // 获取统计数据
 const fetchStatistics = async () => {
   try {
-    const response = await fetch('http://10.11.36.141:8080/api/risk/statistics', {
+    const response = await fetch('/api/risk/statistics', {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
       }
@@ -332,7 +332,7 @@ const updatePieChart = (data) => {
 // 修改获取组织架构排行数据的方法
 const fetchOrgRankings = async () => {
   try {
-    const response = await fetch('http://10.11.36.141:8080/api/risk/org-rankings', {
+    const response = await fetch('/api/risk/org-rankings', {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
       }
